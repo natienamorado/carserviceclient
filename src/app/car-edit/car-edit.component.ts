@@ -32,14 +32,14 @@ export class CarEditComponent implements OnInit, OnDestroy {
             this.giphyService.get(car.name).subscribe(url => car.giphyUrl = url);
           } else {
             console.log(`Car with id '${id}' not found, returning to list`);
-            this.gotoList();
+            this.gotoList(); //si no encuentra el carro lo manda a donde sea :D
           }
         });
       }
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy() {  
     this.sub.unsubscribe();
   }
 
@@ -47,16 +47,17 @@ export class CarEditComponent implements OnInit, OnDestroy {
     this.router.navigate(['/car-list']);
   }
 
-  save(form: NgForm) {
+  save(form: NgForm) {  //guarda los datos del carro 
     this.carService.save(form).subscribe(result => {
-      this.gotoList();
-    }, error => console.error(error));
+      this.gotoList();  //retorna al carlis
+    }, error => console.error(error));//si no existe muestra en consola error
   }
 
-  remove(href) {
+  remove(href) {  //eliminar
     this.carService.remove(href).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }
+ 
 }
 
