@@ -56,6 +56,7 @@ export class OwnerListComponent implements OnInit {
               if(car.ownerDni==j.dni){
                 car.ownerDni=null;
                 car.href=car._links.self.href;
+                this.carService.save(car).subscribe();
                 
               }
               
